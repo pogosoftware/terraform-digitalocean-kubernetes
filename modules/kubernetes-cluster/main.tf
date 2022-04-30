@@ -1,17 +1,17 @@
 resource "digitalocean_kubernetes_cluster" "this" {
-  name    = var.name
+  name    = var.cluster_name
   region  = var.region
-  version = var.kubernetes_version
+  version = var.cluster_version
 
-  vpc_uuid      = var.vpc_uuid
-  auto_upgrade  = var.auto_upgrade
-  surge_upgrade = var.surge_upgrade
-  ha            = var.ha
+  vpc_uuid      = var.cluster_vpc_uuid
+  auto_upgrade  = var.cluster_auto_upgrade
+  surge_upgrade = var.cluster_surge_upgrade
+  ha            = var.cluster_ha
 
-  tags = var.tags
+  tags = var.cluster_tags
 
   dynamic "node_pool" {
-    for_each = var.node_pool
+    for_each = var.cluster_node_pool
 
     content {
       name = each.key
@@ -27,7 +27,7 @@ resource "digitalocean_kubernetes_cluster" "this" {
   }
 
   dynamic "maintenance_policy" {
-    for_each = var.maintenance_policy
+    for_each = var.cluster_maintenance_policy
 
     content {
       day        = each.value.day

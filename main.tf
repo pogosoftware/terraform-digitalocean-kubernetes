@@ -1,7 +1,7 @@
 module "container_registry" {
   source = "./modules/container-registry"
 
-  create = var.create_container_registry
+  count = var.create_container_registry ? 1 : 0
 
   name                   = var.registry_name
   subscription_tier_slug = var.registry_subscription_tier_slug

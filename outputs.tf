@@ -11,32 +11,32 @@ output "region" {
 ##########################################################################
 output "registry_id" {
   description = "The id of the container registry"
-  value       = try(module.container_registry.this[0].id, "")
+  value       = try(module.container_registry[0].this.id, "")
 }
 
 output "registry_name" {
   description = "The name of the container registry"
-  value       = try(module.container_registry.this[0].name, "")
+  value       = try(module.container_registry[0].this.name, "")
 }
 
 output "registry_endpoint" {
   description = "The URL endpoint of the container registry. Ex: registry.digitalocean.com/my_registry"
-  value       = try(module.container_registry.this[0].endpoint, "")
+  value       = try(module.container_registry[0].this.endpoint, "")
 }
 
 output "registry_subscription_tier_slug" {
   description = "The slug identifier for the subscription tier"
-  value       = try(module.container_registry.this[0].subscription_tier_slug, "")
+  value       = try(module.container_registry[0].this.subscription_tier_slug, "")
 }
 
 output "registry_server_url" {
   description = "The domain of the container registry. Ex: registry.digitalocean.com"
-  value       = try(module.container_registry.this[0].server_url, "")
+  value       = try(module.container_registry[0].this.server_url, "")
 }
 
 output "registry_storage_usage_bytes" {
   description = "The amount of storage used in the registry in bytes"
-  value       = try(module.container_registry.this[0].storage_usage_bytes, "")
+  value       = try(module.container_registry[0].this.storage_usage_bytes, "")
 }
 
 ##########################################################################

@@ -1,4 +1,4 @@
-output "id" {
+output "cluster_id" {
   description = "A unique ID that can be used to identify and reference a Kubernetes cluster"
   value       = try(digitalocean_kubernetes_cluster.this.id, "")
 }
@@ -8,42 +8,32 @@ output "cluster_subnet" {
   value       = try(digitalocean_kubernetes_cluster.this.cluster_subnet, "")
 }
 
-output "service_subnet" {
+output "cluster_service_subnet" {
   description = "The range of assignable IP addresses for services running in the Kubernetes cluster"
   value       = try(digitalocean_kubernetes_cluster.this.service_subnet, "")
 }
 
-output "ipv4_address" {
+output "cluster_ipv4_address" {
   description = "The public IPv4 address of the Kubernetes master node. This will not be set if high availability is configured on the cluster (v1.21+)"
   value       = try(digitalocean_kubernetes_cluster.this.ipv4_address, "")
 }
 
-output "endpoint" {
+output "cluster_endpoint" {
   description = "The base URL of the API server on the Kubernetes master node"
   value       = try(digitalocean_kubernetes_cluster.this.endpoint, "")
 }
 
-output "status" {
+output "cluster_status" {
   description = "A string indicating the current status of the cluster. Potential values include running, provisioning, and errored"
   value       = try(digitalocean_kubernetes_cluster.this.status, "")
 }
 
-output "created_at" {
-  description = "The date and time when the Kubernetes cluster was created"
-  value       = try(digitalocean_kubernetes_cluster.this.created_at, "")
-}
-
-output "updated_at" {
-  description = "The date and time when the Kubernetes cluster was last updated"
-  value       = try(digitalocean_kubernetes_cluster.this.updated_at, "")
-}
-
-output "auto_upgrade" {
+output "cluster_auto_upgrade" {
   description = "A boolean value indicating whether the cluster will be automatically upgraded to new patch releases during its maintenance window"
   value       = try(digitalocean_kubernetes_cluster.this.auto_upgrade, "")
 }
 
-output "urn" {
+output "cluster_urn" {
   description = "The uniform resource name (URN) for the Kubernetes cluster"
   value       = try(digitalocean_kubernetes_cluster.this.urn, "")
 }
@@ -84,22 +74,4 @@ output "kube_config_client_certificate" {
 output "kube_config_expires_at" {
   description = "The date and time when the credentials will expire and need to be regenerated"
   value       = try(digitalocean_kubernetes_cluster.this.kube_config[0].expires_at, "")
-}
-
-##########################################################################
-### MAINTENANCE POLICY
-##########################################################################
-output "maintenance_policy_day" {
-  description = "The day of the maintenance window policy. May be one of `monday` through `sunday`, or `any` to indicate an arbitrary week day"
-  value       = try(digitalocean_kubernetes_cluster.this.maintenance_policy[0].day, "")
-}
-
-output "maintenance_policy_duration" {
-  description = "A string denoting the duration of the service window, e.g., `04:00`"
-  value       = try(digitalocean_kubernetes_cluster.this.maintenance_policy[0].duration, "")
-}
-
-output "maintenance_policy_start_time" {
-  description = "The hour in UTC when maintenance updates will be applied, in 24 hour format (e.g. `16:00`)"
-  value       = try(digitalocean_kubernetes_cluster.this.maintenance_policy[0].start_time, "")
 }
