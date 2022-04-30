@@ -30,27 +30,29 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_auto_upgrade"></a> [auto\_upgrade](#input\_auto\_upgrade) | A boolean value indicating whether the cluster will be automatically upgraded to new patch releases during its maintenance window | `bool` | `true` | no |
-| <a name="input_ha"></a> [ha](#input\_ha) | Enable/disable the high availability control plane for a cluster. High availability can only be set when creating a cluster. Any update will create a new cluster. Default: `false` | `bool` | `false` | no |
-| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | The slug identifier for the version of Kubernetes used for the cluster | `string` | n/a | yes |
-| <a name="input_maintenance_policy"></a> [maintenance\_policy](#input\_maintenance\_policy) | A block representing the cluster's maintenance window. Updates will be applied within this window. If not specified, a default maintenance window will be chosen. `auto_upgrade` must be set to `true` for this to have an effect. | <pre>object({<br>    day        = string<br>    start_time = string<br>  })</pre> | `null` | no |
-| <a name="input_name"></a> [name](#input\_name) | A name for the Kubernetes cluster | `string` | n/a | yes |
-| <a name="input_node_pool"></a> [node\_pool](#input\_node\_pool) | A block representing the cluster's default node pool. Additional node pools may be added to the cluster using the `digitalocean_kubernetes_node_pool` resource | `map(any)` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | The slug identifier for the region where the Kubernetes cluster will be created | `string` | n/a | yes |
-| <a name="input_surge_upgrade"></a> [surge\_upgrade](#input\_surge\_upgrade) | Enable/disable surge upgrades for a cluster. Default: `false` | `bool` | `false` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | A list of tag names to be applied to the Kubernetes cluster | `list(string)` | `null` | no |
-| <a name="input_vpc_uuid"></a> [vpc\_uuid](#input\_vpc\_uuid) | The ID of the VPC where the Kubernetes cluster will be located | `string` | `null` | no |
+| <a name="input_cluster_auto_upgrade"></a> [cluster\_auto\_upgrade](#input\_cluster\_auto\_upgrade) | A boolean value indicating whether the cluster will be automatically upgraded to new patch releases during its maintenance window | `bool` | `true` | no |
+| <a name="input_cluster_ha"></a> [cluster\_ha](#input\_cluster\_ha) | Enable/disable the high availability control plane for a cluster. High availability can only be set when creating a cluster. Any update will create a new cluster. Default: `false` | `bool` | `false` | no |
+| <a name="input_cluster_maintenance_policy"></a> [cluster\_maintenance\_policy](#input\_cluster\_maintenance\_policy) | A block representing the cluster's maintenance window. Updates will be applied within this window. If not specified, a default maintenance window will be chosen. `auto_upgrade` must be set to `true` for this to have an effect. | <pre>object({<br>    day        = string<br>    start_time = string<br>  })</pre> | `null` | no |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | A name for the Kubernetes cluster | `string` | n/a | yes |
+| <a name="input_cluster_node_pool"></a> [cluster\_node\_pool](#input\_cluster\_node\_pool) | A block representing the cluster's default node pool. Additional node pools may be added to the cluster using the `digitalocean_kubernetes_node_pool` resource | `map(any)` | n/a | yes |
+| <a name="input_cluster_surge_upgrade"></a> [cluster\_surge\_upgrade](#input\_cluster\_surge\_upgrade) | Enable/disable surge upgrades for a cluster. Default: `false` | `bool` | `false` | no |
+| <a name="input_cluster_tags"></a> [cluster\_tags](#input\_cluster\_tags) | A list of tag names to be applied to the Kubernetes cluster | `list(string)` | `null` | no |
+| <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | The slug identifier for the version of Kubernetes used for the cluster | `string` | n/a | yes |
+| <a name="input_cluster_vpc_uuid"></a> [cluster\_vpc\_uuid](#input\_cluster\_vpc\_uuid) | The ID of the VPC where the Kubernetes cluster will be located | `string` | `null` | no |
+| <a name="input_region"></a> [region](#input\_region) | The slug identifier of for region where registry data will be stored. When not provided, a region will be selected automatically | `string` | `null` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_auto_upgrade"></a> [auto\_upgrade](#output\_auto\_upgrade) | A boolean value indicating whether the cluster will be automatically upgraded to new patch releases during its maintenance window |
+| <a name="output_cluster_auto_upgrade"></a> [cluster\_auto\_upgrade](#output\_cluster\_auto\_upgrade) | A boolean value indicating whether the cluster will be automatically upgraded to new patch releases during its maintenance window |
+| <a name="output_cluster_endpoint"></a> [cluster\_endpoint](#output\_cluster\_endpoint) | The base URL of the API server on the Kubernetes master node |
+| <a name="output_cluster_id"></a> [cluster\_id](#output\_cluster\_id) | A unique ID that can be used to identify and reference a Kubernetes cluster |
+| <a name="output_cluster_ipv4_address"></a> [cluster\_ipv4\_address](#output\_cluster\_ipv4\_address) | The public IPv4 address of the Kubernetes master node. This will not be set if high availability is configured on the cluster (v1.21+) |
+| <a name="output_cluster_service_subnet"></a> [cluster\_service\_subnet](#output\_cluster\_service\_subnet) | The range of assignable IP addresses for services running in the Kubernetes cluster |
+| <a name="output_cluster_status"></a> [cluster\_status](#output\_cluster\_status) | A string indicating the current status of the cluster. Potential values include running, provisioning, and errored |
 | <a name="output_cluster_subnet"></a> [cluster\_subnet](#output\_cluster\_subnet) | The range of IP addresses in the overlay network of the Kubernetes cluster |
-| <a name="output_created_at"></a> [created\_at](#output\_created\_at) | The date and time when the Kubernetes cluster was created |
-| <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | The base URL of the API server on the Kubernetes master node |
-| <a name="output_id"></a> [id](#output\_id) | A unique ID that can be used to identify and reference a Kubernetes cluster |
-| <a name="output_ipv4_address"></a> [ipv4\_address](#output\_ipv4\_address) | The public IPv4 address of the Kubernetes master node. This will not be set if high availability is configured on the cluster (v1.21+) |
+| <a name="output_cluster_urn"></a> [cluster\_urn](#output\_cluster\_urn) | The uniform resource name (URN) for the Kubernetes cluster |
 | <a name="output_kube_config_client_certificate"></a> [kube\_config\_client\_certificate](#output\_kube\_config\_client\_certificate) | The base64 encoded public certificate used by clients to access the cluster. Only available if token authentication is not supported on your cluster |
 | <a name="output_kube_config_client_key"></a> [kube\_config\_client\_key](#output\_kube\_config\_client\_key) | The base64 encoded private key used by clients to access the cluster. Only available if token authentication is not supported on your cluster |
 | <a name="output_kube_config_cluster_ca_certificate"></a> [kube\_config\_cluster\_ca\_certificate](#output\_kube\_config\_cluster\_ca\_certificate) | The base64 encoded public certificate for the cluster's certificate authority |
@@ -58,11 +60,4 @@ No modules.
 | <a name="output_kube_config_host"></a> [kube\_config\_host](#output\_kube\_config\_host) | The URL of the API server on the Kubernetes master node |
 | <a name="output_kube_config_raw_config"></a> [kube\_config\_raw\_config](#output\_kube\_config\_raw\_config) | The full contents of the Kubernetes cluster's kubeconfig file |
 | <a name="output_kube_config_token"></a> [kube\_config\_token](#output\_kube\_config\_token) | The DigitalOcean API access token used by clients to access the cluster |
-| <a name="output_maintenance_policy_day"></a> [maintenance\_policy\_day](#output\_maintenance\_policy\_day) | The day of the maintenance window policy. May be one of `monday` through `sunday`, or `any` to indicate an arbitrary week day |
-| <a name="output_maintenance_policy_duration"></a> [maintenance\_policy\_duration](#output\_maintenance\_policy\_duration) | A string denoting the duration of the service window, e.g., `04:00` |
-| <a name="output_maintenance_policy_start_time"></a> [maintenance\_policy\_start\_time](#output\_maintenance\_policy\_start\_time) | The hour in UTC when maintenance updates will be applied, in 24 hour format (e.g. `16:00`) |
-| <a name="output_service_subnet"></a> [service\_subnet](#output\_service\_subnet) | The range of assignable IP addresses for services running in the Kubernetes cluster |
-| <a name="output_status"></a> [status](#output\_status) | A string indicating the current status of the cluster. Potential values include running, provisioning, and errored |
-| <a name="output_updated_at"></a> [updated\_at](#output\_updated\_at) | The date and time when the Kubernetes cluster was last updated |
-| <a name="output_urn"></a> [urn](#output\_urn) | The uniform resource name (URN) for the Kubernetes cluster |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
