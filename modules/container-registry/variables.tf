@@ -9,12 +9,6 @@ variable "name" {
 ##########################################################################
 ### OPTIONAL
 ##########################################################################
-variable "create" {
-  default     = true
-  description = "Determinates if create resource or not"
-  type        = bool
-}
-
 variable "subscription_tier_slug" {
   default     = "starter"
   description = "The slug identifier for the subscription tier to use (`starter`, `basic`, or `professional`)"

@@ -30,7 +30,6 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_create"></a> [create](#input\_create) | Determinates if create resource or not | `bool` | `true` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the container\_registry | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | he slug identifier of for region where registry data will be stored. When not provided, a region will be selected automatically | `string` | `null` | no |
 | <a name="input_subscription_tier_slug"></a> [subscription\_tier\_slug](#input\_subscription\_tier\_slug) | The slug identifier for the subscription tier to use (`starter`, `basic`, or `professional`) | `string` | `"starter"` | no |
@@ -39,7 +38,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_created_at"></a> [created\_at](#output\_created\_at) | The date and time when the registry was created |
 | <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | The URL endpoint of the container registry. Ex: registry.digitalocean.com/my\_registry |
 | <a name="output_id"></a> [id](#output\_id) | The id of the container registry |
 | <a name="output_name"></a> [name](#output\_name) | The name of the container registry |
